@@ -1,0 +1,22 @@
+$schema: https://azuremlschemas.azureedge.net/latest/pipelineJob.schema.json
+type: pipeline
+display_name: run_extract_features
+experiment_name: lab5_silver_extract
+
+inputs:
+  raw_images:
+    type: uri_folder
+    path: azureml:tumor_images_raw:1
+
+jobs:
+  extract_features:
+    type: command
+    component: azureml:extract_features_component:5
+    compute: azureml:goodreads-vm60107070
+    inputs:
+      raw_images: ${{parent.inputs.raw_images}}
+    outputs:
+      features_output:
+        type: uri_folder
+        mode: rw_mount
+        path: azureml://datastores/lab5_adls_60107070/paths/silver/features_v1

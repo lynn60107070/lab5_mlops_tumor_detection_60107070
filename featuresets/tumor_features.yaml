@@ -1,0 +1,15 @@
+$schema: http://azureml/sdk-2-0/Featureset.json
+
+name: tumor_features
+version: "1"
+
+specification:
+  path: .
+
+entities:
+  - azureml:tumor_image:1
+
+materialization_settings:
+  offline_enabled: true
+
+stage: Development

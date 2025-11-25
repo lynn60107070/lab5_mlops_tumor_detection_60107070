@@ -1,0 +1,23 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+
+name: extract_features_component
+display_name: Extract MRI Features
+version: 5
+type: command
+
+inputs:
+  raw_images:
+    type: uri_folder
+
+outputs:
+  features_output:
+    type: uri_folder
+
+code: .
+
+environment: azureml:extract-features-env:1
+
+command: >-
+  python src/extract_features.py
+  --input_path ${{inputs.raw_images}}
+  --output_path ${{outputs.features_output}}
