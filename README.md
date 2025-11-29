@@ -316,5 +316,3 @@ This repo completes:
 
 Pipeline works. Endpoint works.  
 Student barely works, but that’s not graded.
-
-```
