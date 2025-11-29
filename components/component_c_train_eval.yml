@@ -1,0 +1,30 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+name: tumor_training_evaluation
+version: 1
+type: command
+display_name: Tumor Training and Evaluation
+inputs:
+  train_input:
+    type: uri_folder
+  test_input:
+    type: uri_folder
+  selected_features_input:
+    type: uri_file
+  feature_set_version:
+    type: string
+    default: "1"
+outputs:
+  model_output:
+    type: uri_folder
+  metrics_output:
+    type: uri_file
+code: ../src
+environment: azureml:extract-features-env:2
+command: >-
+  python component_c_train_eval.py
+  --train_input ${{inputs.train_input}}
+  --test_input ${{inputs.test_input}}
+  --selected_features_input ${{inputs.selected_features_input}}
+  --feature_set_version ${{inputs.feature_set_version}}
+  --model_output ${{outputs.model_output}}
+  --metrics_output ${{outputs.metrics_output}}

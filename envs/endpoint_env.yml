@@ -1,11 +1,11 @@
 $schema: https://azuremlschemas.azureedge.net/latest/environment.schema.json
 
-name: extract-features-env
+name: tumor-endpoint-env
 version: 2
 image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04
 
 conda_file:
-  name: extract-features-conda
+  name: tumor-endpoint-conda
   channels:
     - conda-forge
     - defaults
@@ -13,11 +13,9 @@ conda_file:
     - python=3.10
     - pip=23.2
     - numpy=1.26.4
-    - pandas=2.2.0
+    - scikit-learn=1.3.2
     - scikit-image=0.22.0
     - pillow=10.2.0
     - scipy=1.11.3
     - pip:
-        - mlflow==2.11.1
-        - azureml-mlflow==1.55.0
-        - sklearn-genetic-opt==0.10.0
+        - azureml-defaults==1.55.0

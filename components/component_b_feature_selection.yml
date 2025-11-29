@@ -1,0 +1,23 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+name: tumor_feature_selection
+version: 1
+type: command
+display_name: Tumor Feature Selection (Baseline + GA)
+inputs:
+  train_input:
+    type: uri_folder
+outputs:
+  selected_features_output:
+    type: uri_file
+  baseline_metrics_output:
+    type: uri_file
+  ga_metrics_output:
+    type: uri_file
+code: ../src
+environment: azureml:extract-features-env:2
+command: >-
+  python component_b_feature_selection.py
+  --train_input ${{inputs.train_input}}
+  --selected_features_output ${{outputs.selected_features_output}}
+  --baseline_metrics_output ${{outputs.baseline_metrics_output}}
+  --ga_metrics_output ${{outputs.ga_metrics_output}}

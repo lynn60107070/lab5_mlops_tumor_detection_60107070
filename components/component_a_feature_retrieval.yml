@@ -1,0 +1,20 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+name: tumor_feature_retrieval
+version: 1
+type: command
+display_name: Tumor Feature Retrieval (Silver → train/test)
+inputs:
+  features_input:
+    type: uri_folder    
+outputs:
+  train_output:
+    type: uri_folder
+  test_output:
+    type: uri_folder
+code: ../src
+environment: azureml:extract-features-env:2
+command: >-
+  python component_a_feature_retrieval.py
+  --features_input ${{inputs.features_input}}
+  --train_output ${{outputs.train_output}}
+  --test_output ${{outputs.test_output}}
